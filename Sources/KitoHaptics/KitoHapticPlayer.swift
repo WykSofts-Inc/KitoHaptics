@@ -127,7 +127,8 @@ extension KitoHapticPattern {
             case .transient:
                 return [KitoHapticImpact(time: event.time, intensity: event.intensity, style: style)]
             case .continuous(let duration):
-                let count = max(Int(duration / buzzInterval), 1)
+                // Round up (minus a hair), so 0.3 / 0.1 = 2.999… still gives three taps.
+                let count = max(Int((duration / buzzInterval - 1e-9).rounded(.up)), 1)
                 return (0..<count).map { step in
                     let moment = event.time + Double(step) * buzzInterval
                     return KitoHapticImpact(time: moment, intensity: event.intensity(at: moment), style: style)
