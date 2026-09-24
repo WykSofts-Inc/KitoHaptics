@@ -16,4 +16,10 @@ public extension View {
     func kitoHaptic<T: Equatable>(_ trigger: T, _ haptic: @escaping () -> Void) -> some View {
         onChange(of: trigger) { _, _ in haptic() }
     }
+
+    /// Plays `pattern` whenever `trigger` changes, e.g. `.successChime` when an
+    /// order's status flips to delivered.
+    func kitoHapticPattern<T: Equatable>(_ pattern: KitoHapticPattern, trigger: T) -> some View {
+        onChange(of: trigger) { _, _ in KitoHaptics.play(pattern) }
+    }
 }
