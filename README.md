@@ -1,5 +1,7 @@
 # KitoHaptics
 
+**[Documentation](https://wyksofts-inc.github.io/KitoHaptics/documentation/kitohaptics/)**
+
 Semantic haptic feedback — call what you mean, not a feedback-generator type.
 
 ## Install
